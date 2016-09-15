@@ -39,6 +39,7 @@
 *.opensdf
 *.sdf
 *.VC.opendb
+04_BattleTank/BattleTank/Content/StarterContent/
 
 # Precompiled Assets
 SourceArt/**/*.png
