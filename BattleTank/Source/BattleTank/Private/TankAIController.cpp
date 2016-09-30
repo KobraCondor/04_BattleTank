@@ -18,14 +18,13 @@ void ATankAIController::Tick(float DeltaSeconds)
 	auto MyTank = Cast<ATank>(GetPawn());
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	
-	if (!MyTank || !PlayerTank)
+	if (PlayerTank)
 	{
-		UE_LOG(LogTemp, Error, TEXT("AI could not find Player Tank"))
-	}
-	else
-	{
+		// Move towards player
+		MoveToActor(PlayerTank, AcceptanceRadius);	
+
 		MyTank->AimAt(PlayerTank->GetActorLocation());
 
-		MyTank->Fire(); // TODO don't fire every frame
+		MyTank->Fire();
 	}
 }
