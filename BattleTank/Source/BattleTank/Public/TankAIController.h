@@ -3,10 +3,11 @@
 #pragma once
 
 #include "AIController.h"
+#include "TankAimingComponent.h"
 #include "TankAIController.generated.h"
 
 // Forward declaration
-class ATank;
+class UTankAimingComponent;
 
 /**
  * 
