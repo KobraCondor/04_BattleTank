@@ -5,6 +5,8 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+class AProjectile;
+
 // Enum for firing state
 UENUM()
 enum class EFiringState : uint8
@@ -30,14 +32,22 @@ public:
 
 	void AimAt(FVector HitLocation);
 
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void Fire();
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = State)
 	EFiringState FiringState = EFiringState::Locked;
 
 private:
+	void MoveBarrelTowards(FVector AimDirection);
+
 	// Sets default values for this component's properties
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000;
+
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankAimingComponent();
 
@@ -45,5 +55,9 @@ private:
 
 	UTankTurret* Turret = nullptr;
 
-	void MoveBarrelTowards(FVector AimDirection);
+	float ReloadTimeSeconds = 3;
+
+	double LastFireTime = 0;
+
+	
 };
