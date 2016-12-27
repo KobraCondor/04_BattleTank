@@ -30,6 +30,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
+	bool IsBarrelMoving();
+
 	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
@@ -63,5 +65,5 @@ private:
 
 	double LastFireTime = 0;
 
-	
+	FVector AimDirection;
 };
